@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>处理结果</title>
+</head>
+<body>
+    <h1>处理完成，请下载结果：</h1>
+    {% for i, link in enumerate(download_links) %}
+        <p><a href="{{ link }}">下载 {{ desc[i] }}</a></p>
+    {% endfor %}
+</body>
+</html>

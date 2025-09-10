@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XJTU Wang's group对外数据处理服务平台</title>
+    <style>
+        /* 基础重置与变量定义 */
+        :root {
+            --primary-color: #2c3e50;      /* 深蓝灰色 - 主色调 */
+            --accent-color: #3498db;       /* 明亮蓝色 - 强调色 */
+            --background-color: #ecf0f1;   /* 浅灰色 - 背景色 */
+            --text-color: #2c3e50;         /* 主要文字颜色 */
+            --light-text: #7f8c8d;         /* 浅色文字 */
+            --white: #ffffff;              /* 白色 */
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 32px;
+            --border-radius: 4px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-md) var(--spacing-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav div {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: var(--spacing-lg);
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: var(--spacing-sm) 0;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--accent-color);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* 主内容区域样式 */
+        section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: var(--spacing-lg);
+        }
+        
+        section div {
+            background-color: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        section p {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+        
+        section a {
+            display: inline-block;
+            text-decoration: none;
+            padding: var(--spacing-sm) var(--spacing-md);
+            margin: 0 var(--spacing-sm);
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        section a:first-of-type {
+            color: var(--light-text);
+            border: 1px solid #bdc3c7;
+        }
+        
+        section a:first-of-type:hover {
+            background-color: #f8f9fa;
+        }
+        
+        section a:last-of-type {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+        
+        section a:last-of-type:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-md) 0;
+            text-align: center;
+        }
+        
+        footer div {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            nav ul {
+                gap: var(--spacing-md);
+            }
+            
+            section div {
+                padding: var(--spacing-md);
+            }
+            
+            section a {
+                display: block;
+                margin: var(--spacing-sm) 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <nav>
+                <div>XJTU wang's group对外数据处理服务平台</div>
+                <ul>
+                    <li><a href="/contact">联系</a></li>
+                    <li><a href="/user_guide">使用手册</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div>
+            <h1>欢迎回来</h1>
+            <p>{{username}}</p>
+            <a href="/logout">退出</a>
+            <a href="menu">进入功能菜单</a>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            <p>© 2025 XJTU wang's group</p>
+        </div>
+    </footer>
+</body>
+</html>

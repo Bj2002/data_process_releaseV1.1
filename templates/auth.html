@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}注册{% endblock %}
+{% block content %}
+  <h2>注册</h2>
+  <form method="post">
+    <input class="form-control mb-2" name="username" placeholder="用户名" required>
+    <input class="form-control mb-2" name="password" type="password" placeholder="密码" required>
+    <input class="form-control mb-2" name="invcode"  placeholder="邀请码" required>
+    <button class="btn btn-success">注册</button>
+    <a class="btn btn-link" href="{{ url_for('login') }}">已有账号？登录</a>
+  </form>
+{% endblock %}

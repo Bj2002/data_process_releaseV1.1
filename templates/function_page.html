@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+  /* 北欧风格设计系统 */
+  :root {
+    /* 色彩系统 */
+    --nord-white: #f8f9fa;
+    --nord-light-gray: #e5e9f0;
+    --nord-gray: #d8dee9;
+    --nord-dark-gray: #4c566a;
+    --nord-blue: #5e81ac;
+    --nord-light-blue: #81a1c1;
+    --nord-forest: #8fbcbb;
+    --nord-focus: #88c0d0;
+    
+    /* 间距系统 */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    
+    /* 圆角系统 */
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+  }
+  
+  /* 标题样式 */
+  .h1 {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--nord-dark-gray);
+    margin-bottom: var(--spacing-lg);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+  
+  .h2 {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 500;
+    color: var(--nord-dark-gray);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -0.25px;
+    line-height: 1.3;
+  }
+  
+  /* 表单容器样式 */
+  form {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    background-color: var(--nord-white);
+    border: 1px solid var(--nord-light-gray);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+  
+  /* 表单标题样式 */
+  form h3 {
+    color: var(--nord-dark-gray);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    letter-spacing: -0.5px;
+  }
+  
+  /* 标签样式 */
+  form label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    color: var(--nord-dark-gray);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  
+  /* 输入框和文本区域基础样式 */
+  form input[type="text"],
+  form textarea {
+    width: 100%;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid var(--nord-gray);
+    border-radius: var(--border-radius-sm);
+    background-color: white;
+    font-size: 1rem;
+    color: var(--nord-dark-gray);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  /* 输入框聚焦状态 */
+  form input[type="text"]:focus,
+  form textarea:focus {
+    outline: none;
+    border-color: var(--nord-focus);
+    box-shadow: 0 0 0 3px rgba(136, 192, 208, 0.15);
+  }
+  
+  /* 文件上传输入样式 */
+  form input[type="file"] {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm) 0;
+    color: var(--nord-dark-gray);
+  }
+  
+  /* 按钮样式 */
+  form button[type="submit"] {
+    background-color: var(--nord-blue);
+    color: white;
+    border: none;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+    margin-top: var(--spacing-xs);
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: var(--nord-light-blue);
+  }
+  
+  /* 占位符文字样式 */
+  form ::-webkit-input-placeholder {
+    color: #a0a6b8;
+    font-style: italic;
+  }
+  
+  form :-moz-placeholder {
+    color: #a0a6b8;
+    font-style: italic;
+  }
+  
+  form ::-moz-placeholder {
+    color: #a0a6b8;
+    font-style: italic;
+  }
+  
+  form :-ms-input-placeholder {
+    color: #a0a6b8;
+    font-style: italic;
+  }
+  
+  /* 必填字段指示 */
+  form input:required {
+    border-left: 3px solid var(--nord-forest);
+  }
+  
+  /* 链接样式 */
+  form + a {
+    display: inline-block;
+    margin-top: var(--spacing-lg);
+    margin-right: var(--spacing-md);
+    color: var(--nord-blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  form + a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 错误消息样式 */
+  ul {
+    list-style: none;
+    padding: var(--spacing-md);
+    background-color: rgba(239, 154, 154, 0.1);
+    border-left: 4px solid #e57373;
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  ul li {
+    color: #c62828;
+    font-size: 0.95rem;
+  }
+  
+  /* 响应式设计 */
+  @media (max-width: 768px) {
+    form {
+      padding: var(--spacing-lg);
+      margin: var(--spacing-md);
+    }
+    
+    .h1 {
+      font-size: 1.875rem;
+    }
+    
+    .h2 {
+      font-size: 1.5rem;
+    }
+    
+    form h3 {
+      font-size: 1.35rem;
+    }
+  }
+</style>
+<head>
+    <title>{{ func_info.name }}</title>
+</head>
+<body>
+    <h1>{{ func_info.name }}</h1>
+    <p>{{ func_info.description }}</p>
+    
+    <form method="post" enctype="multipart/form-data">
+        <!-- 修正的循环部分：使用enumerate获取索引i和描述文本desc -->
+        {% for i in range(func_info.input_descs|length) %}
+        <div>
+            <label>{{ func_info.input_descs[i] }}:</label>
+            <input type="file" name="input_{{ i }}" required>
+        </div>
+        {% endfor %}
+        
+        <button type="submit">执行操作</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Directory</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .function-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .function-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            cursor: pointer; /* 添加手形光标 */
+            text-decoration: none; /* 取消默认链接样式 */
+            display: block; /* 使整个卡片可点击 */
+        }
+        .function-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .function-name {
+            font-size: 1.4em;
+            color: #3498db;
+            margin: 0 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f3f7;
+        }
+        .function-id {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+        .params-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        .params-box {
+            flex-basis: 48%;
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .inputs-box {
+            background-color: #e8f4fc;
+            border-left: 4px solid #3498db;
+        }
+        .outputs-box {
+            background-color: #e6f9ed;
+            border-left: 4px solid #2ecc71;
+        }
+        .param-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+        .param-items {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .param-items li {
+            padding: 5px 0;
+            color: #34495e;
+        }
+        .no-functions {
+            text-align: center;
+            color: #7f8c8d;
+            font-style: italic;
+            grid-column: 1 / -1;
+        }
+        /* 新增：卡片链接样式 */
+        .function-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        /* 新增：卡片名称下的下划线效果 */
+        .function-name {
+            position: relative;
+            display: inline-block;
+        }
+        .function-name::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #3498db;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+        .function-card:hover .function-name::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        /* 新增：手机端的可点击区域优化 */
+        @media (max-width: 768px) {
+            .function-grid {
+                grid-template-columns: 1fr;
+            }
+            .function-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>服务列表</h1>
+            <p>以下列出了所有的服务卡片</p>
+        </header>
+        
+        <div class="function-grid">
+            {% if functions %}
+                {% for func in functions %}
+                <a href="{{ url_for('function_detail', function_id=func.ID) }}" class="function-card">
+                    <div class="function-name">{{ func.name }}</div>
+                    <div class="function-id">ID: {{ func.ID }}</div>
+                    <div class="params-section">
+                        <div class="params-box inputs-box">
+                            <div class="param-title">Inputs</div>
+                            <ul class="param-items">
+                                {% for item in func.input_list %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        
+                        <div class="params-box outputs-box">
+                            <div class="param-title">Outputs</div>
+                            <ul class="param-items">
+                                {% for item in func.output_list %}
+                                <li>{{ item }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            {% else %}
+                <div class="no-functions">
+                    <p>No functions available.</p>
+                    <p>Please check your function.csv file.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

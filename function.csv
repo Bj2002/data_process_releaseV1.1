@@ -1,0 +1,4 @@
+ID,name,input_list,output_list,description,input_list_description,output_list_description
+calc_md5,计算哈希值,['txt'],['txt'],计算文件哈希值,['待计算哈希值的文件'],['文件哈希报告']
+AES,AES,"[""txt"", ""txt""]","[""txt""]",AES,"[""txt"", ""txt""]","[""txt""]"
+AES_crypt,对称式加密,"[""txt"", ""txt""]","[""txt""]",提供对称式加密服务,"[""文件"", ""密钥""]","[""处理结果""]"
